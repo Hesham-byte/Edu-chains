@@ -1,38 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Intern;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\RegisterRequest;
+use App\Http\Traits\ApiResponseTrait;
+use App\Http\Traits\UploadTrait;
 use App\Models\Employer;
+use App\Models\Intern;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
+
 
 class AuthController extends Controller
 {
+    use ApiResponseTrait, UploadTrait;
     //Register new user
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|in:intern,employer',
-            'mobile' => 'required|string|max:11',
-            'cv' => 'nullable|string|max:255',
-            'sex' => ['nullable', Rule::in(['male', 'female'])],
-            'birth_date' => 'nullable|date',
-            'company_name' => 'nullable|string|max:255',
-            'company_address' => 'nullable|string|max:255',
-            'company_website' => 'nullable|string|max:255',
-            'company_email' => 'nullable|string|email|max:255',
-            'company_phone' => 'nullable|string|max:11',
-            'company_logo' => 'nullable|string|max:255'
-        ]);
-
+        $file = '';
+        if ($request->hasFile('resume')) {
+            $file = $this->singlefileUpload($request->file('resume'), 'users', $request->email, 'resumes');
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -43,7 +34,8 @@ class AuthController extends Controller
 
         if ($user->role == 'intern') {
             Intern::create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'cv' => $file
             ]);
         }
         if ($user->role == 'employer') {
@@ -51,8 +43,9 @@ class AuthController extends Controller
                 'user_id' => $user->id
             ]);
         }
+        $token = $user->createToken($request->email, ['remember_me' => $request->remember])->plainTextToken;
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return $this->apiSuccess(compact('token'), 'User registered successfully');
     }
 
     //login user

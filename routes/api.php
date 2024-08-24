@@ -4,7 +4,7 @@ use App\Http\Controllers\APi\V1\ApplicationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\JobController;
