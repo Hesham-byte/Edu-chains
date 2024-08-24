@@ -1,0 +1,43 @@
+.left-div{
+    color: white;
+}
+.main-div{
+    background-color: #38608F;
+    height: auto;
+    min-height: 100vh;
+}
+.right-div {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+}
+.bottom-image {
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    width: 400px;
+    z-index: 2;
+}
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+    margin: 0 10px;
+}
+
+.separator span {
+    font-size: 14px;
+    color: #666;
+}

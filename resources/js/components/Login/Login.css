@@ -1,0 +1,17 @@
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.875rem;
+}
+
