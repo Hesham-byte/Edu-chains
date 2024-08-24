@@ -5,18 +5,22 @@ namespace App\Http\Controllers\APi\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\ApplicationCreateRequest;
 use App\Http\Resources\V1\ApplicationResource;
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\Application;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-
+    use ApiResponseTrait;
     public function index($jobId)
     {
         $job = Job::findOrFail($jobId);
-        $applications = ApplicationResource::collection($job->applications);
-        return response()->json(['data' => ['applications' => $applications], 'message' => 'Request sent successfully'], 201);
+        if ($job->applications->count() != 0) {
+            $applications = ApplicationResource::collection($job->applications);
+            return $this->apiSuccess(compact('applications'), 'Applications fetched successfully');
+        }
+        return $this->apiSuccess([], 'No applications found');
     }
     public function store(ApplicationCreateRequest $request, $jobId)
     {
@@ -35,6 +39,6 @@ class ApplicationController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
-        return response()->json(['data' => ['application' => $application], 'message' => 'Application created successfully'], 201);
+        return $this->apiSuccess(compact('application'), 'Application created successfully');
     }
 }
