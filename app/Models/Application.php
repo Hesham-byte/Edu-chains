@@ -11,13 +11,14 @@ class Application extends Model
 
     protected $fillable = [
         'user_id',
-        'job_id',
+        'employer_job_id',
         'status',
         'name',
         'email',
         'mobile',
         'skills',
         'linkedin',
-        'plan'
+        'plan',
+        'resume',
     ];
 }

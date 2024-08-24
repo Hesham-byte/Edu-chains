@@ -22,14 +22,15 @@ class ApplicationCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'job_id' => 'required|exists:jobs,id',
+            'job_id' => 'required|exists:employer_jobs,id',
             'user_id' => 'required|exists:users,id',
             'name' => 'required',
             'email' => 'required|email',
-            'mobile' => 'required|min:11|max:11|regex:patterns/0[0-9]{9}/',
+            'mobile' => 'required|min:11|max:11|regex:/0[0-9]{9}/',
             'skills' => 'required',
             'linkedin' => 'required',
             'plan' => 'required',
+            'resume' => 'nullable|mimes:pdf|max:4096',
         ];
     }
 }

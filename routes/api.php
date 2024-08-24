@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APi\V1\ApplicationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [UsersController::class, 'show']);
 
-    Route::put('/user/edit', [UsersController::class, 'edit']); 
+    Route::put('/user/edit', [UsersController::class, 'edit']);
     Route::post('/jobs', [JobController::class, 'store']);
     Route::put('/jobs/{id}', [JobController::class, 'update']);
     Route::delete('/jobs/{id}', [JobController::class, 'destroy']);
 });
 
+// Application Routes
+Route::controller(ApplicationController::class)->group(function () {
+    Route::get('/jobs/{id}/applications', 'index')->middleware('auth:sanctum');
+    Route::post('/jobs/{id}/apply', 'store')->middleware('auth:sanctum');
+});

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)
                 ->constrained()
                 ->onDelete('cascade');
-            $table->foreignIdFor(Job::class)
+            $table->foreignIdFor(Job::class, 'employer_job_id')
                 ->constrained()
                 ->onDelete('cascade');
             $table->string('name');
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->json('skills');
             $table->string('linkedin')->nullable();
             $table->string('plan');
+            $table->string('resume')->nullable();
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });

@@ -9,7 +9,12 @@ class Category extends Model
 {
     use HasFactory;
     protected $tabe = 'categories';
-    
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
     public function jobs()
     {
         return $this->hasMany(Job::class);
