@@ -13,11 +13,20 @@ use Illuminate\Http\Request;
 class ApplicationController extends Controller
 {
     use ApiResponseTrait;
-    public function index($jobId)
+    public function getByJob($jobId)
     {
         $job = Job::findOrFail($jobId);
         if ($job->applications->count() != 0) {
             $applications = ApplicationResource::collection($job->applications);
+            return $this->apiSuccess(compact('applications'), 'Applications fetched successfully');
+        }
+        return $this->apiSuccess([], 'No applications found');
+    }
+    public function getByUser()
+    {
+        $user = auth()->user();
+        if ($user->applications->count() != 0) {
+            $applications = ApplicationResource::collection($user->applications);
             return $this->apiSuccess(compact('applications'), 'Applications fetched successfully');
         }
         return $this->apiSuccess([], 'No applications found');
