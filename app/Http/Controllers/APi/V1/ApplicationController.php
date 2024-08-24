@@ -41,4 +41,16 @@ class ApplicationController extends Controller
         }
         return $this->apiSuccess(compact('application'), 'Application created successfully');
     }
+
+    public function takeAction(Request $request, $applicationId)
+    {
+        $request->validate(['status' => 'required|in:accepted,rejected']);
+        $application = Application::findOrFail($applicationId);
+        if ($application->status == 'pending') {
+            $application->update(['status' => $request->status]);
+            $application = new ApplicationResource($application);
+            return $this->apiSuccess(compact('application'), 'Application has been ' . $request->status . ' successfully');
+        }
+        return $this->apiSuccess(compact('application'), 'This application had been ' . $request->status . ' before');
+    }
 }
