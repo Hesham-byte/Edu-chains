@@ -34,12 +34,15 @@ class ApplicationController extends Controller
             'linkedin' => $request->linkedin,
             'plan' => $request->plan,
         ];
-        try {
-            $application = new ApplicationResource(Application::create($data));
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
-        }
+        $application = new ApplicationResource(Application::create($data));
         return $this->apiSuccess(compact('application'), 'Application created successfully');
+    }
+
+    public function show($applicationId)
+    {
+        $application = Application::findOrFail($applicationId);
+        $application = new ApplicationResource($application);
+        return $this->apiSuccess(compact('application'), 'Application fetched successfully');
     }
 
     public function takeAction(Request $request, $applicationId)

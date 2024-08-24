@@ -34,5 +34,6 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::controller(ApplicationController::class)->group(function () {
     Route::get('/jobs/{id}/applications', 'index')->middleware('auth:sanctum');
     Route::post('/jobs/{id}/apply', 'store')->middleware('auth:sanctum');
+    Route::get('/applications/{id}', 'show')->middleware('auth:sanctum');
     Route::put('/applications/{id}/take-action', 'takeAction')->middleware('auth:sanctum');
 });
