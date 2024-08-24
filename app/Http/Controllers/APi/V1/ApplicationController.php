@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\ApplicationCreateRequest;
 use App\Http\Resources\V1\ApplicationResource;
 use App\Http\Traits\ApiResponseTrait;
+use App\Http\Traits\UploadTrait;
 use App\Models\Application;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    use ApiResponseTrait;
+    use ApiResponseTrait, UploadTrait;
     public function getByJob($jobId)
     {
         $job = Job::findOrFail($jobId);
@@ -33,6 +34,10 @@ class ApplicationController extends Controller
     }
     public function store(ApplicationCreateRequest $request, $jobId)
     {
+        $file = '';
+        if ($request->hasFile('resume')) {
+            $file = $this->singlefileUpload($request->file('resume'), 'jobs', $request->name, 'resumes');
+        }
         $data = [
             'employer_job_id' => $jobId,
             'user_id' => $request->user_id,
@@ -42,6 +47,8 @@ class ApplicationController extends Controller
             'skills' => json_encode($request->skills),
             'linkedin' => $request->linkedin,
             'plan' => $request->plan,
+            'status' => 'pending',
+            'resume' => $file,
         ];
         $application = new ApplicationResource(Application::create($data));
         return $this->apiSuccess(compact('application'), 'Application created successfully');
