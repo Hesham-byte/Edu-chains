@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'mobile' => $this->mobile,
             'role' => $this->role,
-            'tags' => json_decode($this->tags),
+            'tags' => TagResource::collection($this->tags),
         ];
         if ($this->role === 'intern' && $this->intern) {
             $data['title'] = $this->intern->title;
