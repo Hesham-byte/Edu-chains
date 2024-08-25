@@ -18,6 +18,9 @@ class TagResource extends JsonResource
             'id' => $this->id,
             'name' => [
                 'en' => $this->name,
+            ],
+            'slug' => [
+                'en' => $this->slug,
             ]
         ];
     }

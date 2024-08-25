@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 use Spatie\Tags\Tag;
 
 class TagController extends Controller
 {
+    use ApiResponseTrait;
     public function index(Request $request)
     {
         $query = $request->input('q');
@@ -18,7 +20,7 @@ class TagController extends Controller
 
         $tags = $tagsQuery->pluck('name');
 
-        return response()->json($tags);
+        return $this->apiSuccess(compact('tags'));
     }
 
     public function store(Request $request)
@@ -32,4 +34,3 @@ class TagController extends Controller
         return response()->json($tag, 201);
     }
 }
-

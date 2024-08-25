@@ -49,7 +49,7 @@ const Profile = () => {
         try {
             const response = await axios.get(`/api/tags?q=${inputValue}`);
             const existingTags = user.tags.map(tag => tag.name.en);
-            const allSuggestions = [...response.data, inputValue];
+            const allSuggestions = [...response.data.data.tags, inputValue];
             const newSuggestions = allSuggestions.filter(tag => !existingTags.includes(tag));
             setTagSuggestions(newSuggestions);
         } catch (error) {
