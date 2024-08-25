@@ -25,7 +25,7 @@ const EmployerJobs = ({ employerId }) => {
                 const response = await axios.get('/api/jobs', {
                     params: { employer_id: employerId }
                 });
-                setJobs(response.data);
+                setJobs(response.data.data.jobs);
             } catch (error) {
                 console.error('Error fetching employer jobs:', error);
                 setError('Failed to fetch jobs');
@@ -37,7 +37,7 @@ const EmployerJobs = ({ employerId }) => {
         const fetchCategories = async () => {
             try {
                 const response = await axios.get('/api/categories');
-                setCategories(response.data);
+                setCategories(response.data.data.categories);
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
@@ -62,7 +62,7 @@ const EmployerJobs = ({ employerId }) => {
                 ...newJob,
                 employer_id: employerId,
             });
-            setJobs((prevJobs) => [...prevJobs, response.data]);
+            setJobs((prevJobs) => [...prevJobs, response.data.data.jobs]);
             setNewJob({
                 employer_id: employerId,
                 title: '',

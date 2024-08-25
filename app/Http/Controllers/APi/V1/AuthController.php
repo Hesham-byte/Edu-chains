@@ -28,6 +28,10 @@ class AuthController extends Controller
             'mobile' => $request->mobile
         ]);
 
+        if ($request->hasFile('image')) {
+            $image = $this->singlefileUpload($request->file('image'), 'users', $request->name, 'images');
+            $user->update(['image' => $image]);
+        }
         if ($user->role == 'intern') {
             Intern::create([
                 'user_id' => $user->id,

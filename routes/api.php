@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\TagController;
-use App\Http\Controllers\JobController;
+use App\Http\Controllers\Api\V1\JobController;
 use App\Http\Controllers\Api\V1\CategoryController;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -32,9 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // Application Routes
 Route::controller(ApplicationController::class)->group(function () {
+    Route::post('/jobs/{id}/apply', 'store')->middleware('auth:sanctum');
     Route::get('/jobs/{id}/applications', 'getByJob')->middleware('auth:sanctum');
     Route::get('/user/applications', 'getByUser')->middleware('auth:sanctum');
-    Route::post('/jobs/{id}/apply', 'store')->middleware('auth:sanctum');
     Route::get('/applications/{id}', 'show')->middleware('auth:sanctum');
     Route::put('/applications/{id}/take-action', 'takeAction')->middleware('auth:sanctum');
 });

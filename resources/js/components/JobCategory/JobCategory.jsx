@@ -3,27 +3,29 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const JobCategory = () => {
-    const { id } = useParams(); 
+    const { id } = useParams();
     const [jobs, setJobs] = useState([]);
+    const [cat, setCat] = useState([]);
 
     useEffect(() => {
         const fetchJobs = async () => {
             try {
                 const response = await axios.get(`/api/jobs/category/${id}`);
-                setJobs(response.data);
+                setJobs(response.data.data.jobs);
+                setCat(response.data.data.category);
             } catch (error) {
                 console.error('Error fetching jobs by category:', error);
             }
         };
 
-        if (id) { 
+        if (id) {
             fetchJobs();
         }
     }, [id]);
 
     return (
         <div>
-            <h1>Jobs in Category {id}</h1>
+            <h1>Jobs in {cat.name}</h1>
             {jobs.length > 0 ? (
                 <ul>
                     {jobs.map(job => (

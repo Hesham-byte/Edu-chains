@@ -34,7 +34,8 @@ class RegisterRequest extends FormRequest
             'company_website' => 'nullable|string|max:255',
             'company_email' => 'nullable|string|email|max:255',
             'company_phone' => 'nullable|string|max:11',
-            'company_logo' => 'nullable|string|max:255'
+            'company_logo' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:4096'
         ];
     }
 }

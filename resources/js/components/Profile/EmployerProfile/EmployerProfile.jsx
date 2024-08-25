@@ -3,7 +3,7 @@ import { useAuth } from '../../AuthContext/AuthContext';
 import { Link } from 'react-router-dom';
 import axios from '../../../axios';
 import Modal from '../../Modal/Modal';
-import EmployerJobs from '../../Jobs/EmployerJobs'; 
+import EmployerJobs from '../../Jobs/EmployerJobs';
 
 const EmployerProfile = () => {
     const { user, isAuthenticated } = useAuth();
@@ -30,7 +30,7 @@ const EmployerProfile = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             await axios.put('/api/user/edit', formData);
             alert('Profile updated successfully');
