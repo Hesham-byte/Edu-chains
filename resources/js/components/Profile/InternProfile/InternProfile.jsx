@@ -115,8 +115,8 @@ const Profile = () => {
             <p>Name: {user.name}</p>
             <p>Title: {user.title}</p>
             <p>Mobile: {user.mobile}</p>
-            <p>CV: {user.cv}</p>
-            <p>Description: {user.description}</p>
+            <p>CV: {user.intern.cv}</p>
+            <p>Description: {user.intern.description}</p>
             <p>Tags: {user.tags && user.tags.map(tag => tag.name.en).join(' ')}</p>
             <p>image: {user.image}</p>
             <button className='btn btn-primary' onClick={() => setIsModalOpen(true)}>Edit Profile</button>

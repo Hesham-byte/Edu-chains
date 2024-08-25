@@ -27,9 +27,13 @@ class UserController extends Controller
     {
         $user = $request->user();
         $cv = '';
+        $logo = $user->role === 'employer' ? $user->employer->company_logo : '';
         $image = $user->image;
         if ($request->hasFile('image')) {
             $image = $this->singlefileUpload($request->file('image'), 'users', $request->name, 'images');
+        }
+        if ($request->hasFile('company_logo')) {
+            $logo = $this->singlefileUpload($request->file('company_logo'), 'companies', $request->name, 'images');
         }
         if ($request->hasFile('cv')) {
             $cv = $this->singlefileUpload($request->file('cv'), 'users', $request->name, 'resumes');
@@ -55,7 +59,7 @@ class UserController extends Controller
                 'company_website' => $request->company_website,
                 'company_email' => $request->company_email,
                 'company_phone' => $request->company_phone,
-                'company_logo' => $request->company_logo,
+                'company_logo' => $logo,
             ]);
         }
 

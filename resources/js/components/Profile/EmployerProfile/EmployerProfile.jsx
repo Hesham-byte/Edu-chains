@@ -55,12 +55,12 @@ const EmployerProfile = () => {
             <h1>Employer Profile</h1>
             <p>Name: {user.name}</p>
             <p>Mobile: {user.mobile}</p>
-            <p>Company Name: {user.company_name}</p>
-            <p>Company Address: {user.company_address}</p>
-            <p>Company Website: {user.company_website}</p>
-            <p>Company Email: {user.company_email}</p>
-            <p>Company Phone: {user.company_phone}</p>
-            <p>Company Logo: {user.company_logo}</p>
+            <p>Company Name: {user.employer.company_name}</p>
+            <p>Company Address: {user.employer.company_address}</p>
+            <p>Company Website: {user.employer.company_website}</p>
+            <p>Company Email: {user.employer.company_email}</p>
+            <p>Company Phone: {user.employer.company_phone}</p>
+            <p>Company Logo: {user.employer.company_logo}</p>
             <button className='btn btn-primary' onClick={() => setIsModalOpen(true)}>Edit Profile</button>
 
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

@@ -23,7 +23,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'mobile' => 'required|string|max:11',
+            'mobile' => 'required|string|max:11,unique:users,mobile,' . $this->user()->id,
             'title' => 'nullable|string|max:255',
             'cv' => 'nullable|mimes:pdf|max:4096',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
@@ -33,7 +33,7 @@ class UserUpdateRequest extends FormRequest
             'company_website' => 'nullable|string|max:255',
             'company_email' => 'nullable|string|email|max:255',
             'company_phone' => 'nullable|string|max:11',
-            'company_logo' => 'nullable|string|max:255',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
             'tags' => 'array',
             'tags.*' => 'string|max:255'
         ];

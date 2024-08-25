@@ -24,18 +24,9 @@ class UserResource extends JsonResource
             'image' => asset($this->image),
         ];
         if ($this->role === 'intern' && $this->intern) {
-            $data['intern']['id'] = $this->intern->id;
-            $data['title'] = $this->intern->title;
-            $data['description'] = $this->intern->description;
-            $data['cv'] = $this->cv ? asset($this->intern->cv) : null;
+            $data['intern'] = new InternResource($this->intern);
         } elseif ($this->role === 'employer' && $this->employer) {
-            $data['employer']['id'] = $this->employer->id;
-            $data['company_name'] = $this->employer->company_name;
-            $data['company_address'] = $this->employer->company_address;
-            $data['company_website'] = $this->employer->company_website;
-            $data['company_email'] = $this->employer->company_email;
-            $data['company_phone'] = $this->employer->company_phone;
-            $data['company_logo'] = $this->employer->company_logo;
+            $data['employer'] = new EmployerResource($this->employer);
         }
 
         return $data;
