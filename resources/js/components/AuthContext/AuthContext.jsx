@@ -52,9 +52,9 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password, remember) => {
         await axios.get('/sanctum/csrf-cookie');
-        const response = await axios.post('/api/login', { email, password, remember }, 
+        const response = await axios.post('/api/login', { email, password, remember },
         );
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response.data.data.token);
         setIsAuthenticated(true);
         setUser(response.data.user);
         document.dispatchEvent(new Event('login'));

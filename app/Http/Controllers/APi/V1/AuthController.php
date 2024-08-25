@@ -67,7 +67,7 @@ class AuthController extends Controller
 
         $token = $user->createToken($request->email, ['remember_me' => $request->remember])->plainTextToken;
 
-        return response()->json(['token' => $token], 200);
+        return $this->apiSuccess(compact('token'), 'User registered successfully');
     }
 
     //logout user

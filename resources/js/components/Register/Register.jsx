@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../../axios';
+import { useAuth } from '../AuthContext/AuthContext';
 import './Register.css';
 
 const Register = () => {
@@ -10,6 +11,8 @@ const Register = () => {
     const [role, setRole] = useState('intern');
     const [mobile, setMobile] = useState('');
     const [errors, setErrors] = useState({});
+    const { login } = useAuth();
+
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -24,7 +27,8 @@ const Register = () => {
             };
 
             await axios.post('/api/register', formData);
-            alert('Registration successful');
+            await login(email, password, false);
+            window.location = '/';
         } catch (error) {
             if (error.response && error.response.status === 422) {
                 setErrors(error.response.data.errors);
