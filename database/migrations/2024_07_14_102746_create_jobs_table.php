@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('employer_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->string('skills');
             $table->decimal('salary', 8, 2)->nullable();
             $table->enum('work_arrangement', ['remote', 'onsite', 'hybrid']);

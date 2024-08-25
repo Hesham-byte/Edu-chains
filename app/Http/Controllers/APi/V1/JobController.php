@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\JobCreateRequest;
 use App\Http\Resources\V1\CategoryResource;
 use App\Http\Resources\V1\JobResource;
 use App\Http\Traits\ApiResponseTrait;
@@ -25,22 +26,11 @@ class JobController extends Controller
         return Job::all();
     }
 
-    public function store(Request $request)
+    public function store(JobCreateRequest $request)
     {
-        $request->validate([
-            'employer_id' => 'required|exists:employers,id',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'location' => 'nullable|string|max:255',
-            'skills' => 'nullable|string|max:255',
-            'salary' => 'nullable|numeric',
-            'work_arrangement' => 'nullable|string|in:remote,onsite,hybrid',
-            'job_type' => 'nullable|string|in:full-time,part-time',
-            'category_id' => 'required|exists:categories,id',
-        ]);
 
-        $job = Job::create($request->all());
-        return response()->json($job, 201);
+        $job = new JobResource(Job::create($request->all()));
+        return $this->apiSuccess(compact('job'));
     }
 
     public function update(Request $request, $id)

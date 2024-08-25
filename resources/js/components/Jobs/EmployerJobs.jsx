@@ -62,7 +62,7 @@ const EmployerJobs = ({ employerId }) => {
                 ...newJob,
                 employer_id: employerId,
             });
-            setJobs((prevJobs) => [...prevJobs, response.data.data.jobs]);
+            setJobs((prevJobs) => [...prevJobs, response.data.data.job]);
             setNewJob({
                 employer_id: employerId,
                 title: '',
@@ -96,7 +96,6 @@ const EmployerJobs = ({ employerId }) => {
                     value={newJob.title}
                     onChange={handleInputChange}
                     placeholder="Job Title"
-                    required
                 />
                 {jobErrors.title && <span>{jobErrors.title[0]}</span>}
 
@@ -105,7 +104,6 @@ const EmployerJobs = ({ employerId }) => {
                     value={newJob.description}
                     onChange={handleInputChange}
                     placeholder="Job Description"
-                    required
                 />
                 {jobErrors.description && <span>{jobErrors.description[0]}</span>}
 
@@ -163,7 +161,6 @@ const EmployerJobs = ({ employerId }) => {
                     name="category_id"
                     value={newJob.category_id}
                     onChange={handleInputChange}
-                    required
                 >
                     <option value="">Select Category</option>
                     {categories.map(category => (
