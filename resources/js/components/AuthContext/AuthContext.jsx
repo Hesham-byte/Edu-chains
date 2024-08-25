@@ -20,7 +20,8 @@ export const AuthProvider = ({ children }) => {
                             'Authorization': `Bearer ${token}`
                         }
                     });
-                    setUser(response.data);
+                    console.log(response.data.data.user);
+                    setUser(response.data.data.user);
                     setIsAuthenticated(true);
                 } else {
                     setIsAuthenticated(false);

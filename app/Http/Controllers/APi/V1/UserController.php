@@ -1,34 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Resources\V1\UserResource;
+use App\Http\Traits\ApiResponseTrait;
+use App\Http\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Intern;
 use App\Models\Employer;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
+    use ApiResponseTrait, UploadTrait;
     public function show(Request $request)
     {
-        $user = $request->user();
-        $user->load(['tags']);
+        $user = new UserResource($request->user());
 
-        if ($user->role === 'intern' && $user->intern) {
-            $user->title = $user->intern->title;
-            $user->description = $user->intern->description;
-            $user->cv = $user->intern->cv;
-        } elseif ($user->role === 'employer' && $user->employer) {
-            $user->company_name = $user->employer->company_name;
-            $user->company_address = $user->employer->company_address;
-            $user->company_website = $user->employer->company_website;
-            $user->company_email = $user->employer->company_email;
-            $user->company_phone = $user->employer->company_phone;
-            $user->company_logo = $user->employer->company_logo;
-        }
-
-        return response()->json($user, 200);
+        return $this->apiSuccess(compact('user'), 'User fetched successfully');
     }
 
     public function edit(Request $request)
