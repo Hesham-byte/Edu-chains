@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Api\V1\CategoryController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

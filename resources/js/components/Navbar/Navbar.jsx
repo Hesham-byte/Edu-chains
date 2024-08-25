@@ -12,7 +12,7 @@ const Navbar = () => {
     useEffect(() => {
         axios.get("/api/categories")
             .then((response) => {
-                setCategories(response.data);
+                setCategories(response.data.data.categories);
             })
             .catch((error) => {
                 console.error("Error fetching categories:", error);
@@ -74,7 +74,7 @@ const Navbar = () => {
                                 >
                                     <img className="rounded-circle" src={`${user.image}`} width={50} alt="user" />
                                 </a>
-                                
+
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li >
                                         <Link to="/profile" className="dropdown-item">

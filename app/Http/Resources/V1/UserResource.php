@@ -26,7 +26,7 @@ class UserResource extends JsonResource
         if ($this->role === 'intern' && $this->intern) {
             $data['title'] = $this->intern->title;
             $data['description'] = $this->intern->description;
-            $data['cv'] = asset($this->intern->cv);
+            $data['cv'] = $this->cv ? asset($this->intern->cv) : null;
         } elseif ($this->role === 'employer' && $this->employer) {
             $data['company_name'] = $this->employer->company_name;
             $data['company_address'] = $this->employer->company_address;

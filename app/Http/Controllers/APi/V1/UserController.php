@@ -63,6 +63,6 @@ class UserController extends Controller
             $user->syncTags($request->tags);
         }
 
-        return response()->json(['message' => 'Profile updated successfully']);
+        return $this->apiSuccess(message: 'Profile updated successfully');
     }
 }
