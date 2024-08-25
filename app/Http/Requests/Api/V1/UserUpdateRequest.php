@@ -26,6 +26,7 @@ class UserUpdateRequest extends FormRequest
             'mobile' => 'required|string|max:11',
             'title' => 'nullable|string|max:255',
             'cv' => 'nullable|mimes:pdf|max:4096',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
             'description' => 'nullable|string',
             'company_name' => 'nullable|string|max:255',
             'company_address' => 'nullable|string|max:255',

@@ -21,6 +21,7 @@ class UserResource extends JsonResource
             'mobile' => $this->mobile,
             'role' => $this->role,
             'tags' => TagResource::collection($this->tags),
+            'image' => asset($this->image),
         ];
         if ($this->role === 'intern' && $this->intern) {
             $data['title'] = $this->intern->title;

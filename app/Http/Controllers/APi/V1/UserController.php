@@ -26,20 +26,25 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request)
     {
         $user = $request->user();
-        $file = '';
+        $cv = '';
+        $image = $user->image;
+        if ($request->hasFile('image')) {
+            $image = $this->singlefileUpload($request->file('image'), 'users', $request->name, 'images');
+        }
         if ($request->hasFile('cv')) {
-            $file = $this->singlefileUpload($request->file('cv'), 'users', $request->name, 'resumes');
+            $cv = $this->singlefileUpload($request->file('cv'), 'users', $request->name, 'resumes');
         }
         $user->update([
             'name' => $request->name,
-            'mobile' => $request->mobile
+            'mobile' => $request->mobile,
+            'image' => $image
         ]);
 
         if ($user->role === 'intern') {
             $intern = Intern::where('user_id', $user->id)->first();
             $intern->update([
                 'title' => $request->title,
-                'cv' => $file,
+                'cv' => $cv,
                 'description' => $request->description
             ]);
         } elseif ($user->role === 'employer') {
