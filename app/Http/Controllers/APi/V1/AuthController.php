@@ -20,10 +20,6 @@ class AuthController extends Controller
     //Register new user
     public function register(RegisterRequest $request)
     {
-        $file = '';
-        if ($request->hasFile('resume')) {
-            $file = $this->singlefileUpload($request->file('resume'), 'users', $request->email, 'resumes');
-        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -35,7 +31,6 @@ class AuthController extends Controller
         if ($user->role == 'intern') {
             Intern::create([
                 'user_id' => $user->id,
-                'cv' => $file
             ]);
         }
         if ($user->role == 'employer') {

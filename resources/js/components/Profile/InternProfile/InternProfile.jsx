@@ -18,7 +18,7 @@ const Profile = () => {
     const [errors, setErrors] = useState({});
     const [tagSuggestions, setTagSuggestions] = useState([]);
     const [tagInput, setTagInput] = useState('');
-    console.log(user);
+    // console.log(user);
     useEffect(() => {
         if (tagInput) {
             const fetchTagSuggestions = async () => {
@@ -45,7 +45,7 @@ const Profile = () => {
     const handleTagInputChange = async (e) => {
         const inputValue = e.target.value;
         setTagInput(inputValue);
-    
+
         try {
             const response = await axios.get(`/api/tags?q=${inputValue}`);
             const existingTags = user.tags.map(tag => tag.name.en);
@@ -57,13 +57,13 @@ const Profile = () => {
             setTagSuggestions([]);
         }
     };
-    
+
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
         const existingTags = user.tags.map(tag => tag.name.en);
-        
+
         const newTags = formData.tags.filter(tag => !existingTags.includes(tag));
         for (const tag of newTags) {
             try {
@@ -103,8 +103,8 @@ const Profile = () => {
         setTagInput('');
         setTagSuggestions([]);
     };
-    
-    
+
+
     if (!isAuthenticated) {
         return <Link to="/login">Login</Link>;
     }
@@ -150,7 +150,7 @@ const Profile = () => {
                             {tagSuggestions.map((tag, index) => (
                                 <li key={`${tag}-${index}`} onClick={() => handleTagSelection(tag)}>{tag}</li>
                             ))}
-                        </ul>             
+                        </ul>
                         )}
                         {formData.tags.length > 0 && (
                             <div>

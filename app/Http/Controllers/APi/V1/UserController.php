@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\UserUpdateRequest;
 use App\Models\User;
 use App\Http\Resources\V1\UserResource;
 use App\Http\Traits\ApiResponseTrait;
@@ -22,26 +23,13 @@ class UserController extends Controller
         return $this->apiSuccess(compact('user'), 'User fetched successfully');
     }
 
-    public function edit(Request $request)
+    public function update(UserUpdateRequest $request)
     {
         $user = $request->user();
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'title' => 'nullable|string|max:255',
-            'mobile' => 'required|string|max:11',
-            'cv' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'company_name' => 'nullable|string|max:255',
-            'company_address' => 'nullable|string|max:255',
-            'company_website' => 'nullable|string|max:255',
-            'company_email' => 'nullable|string|email|max:255',
-            'company_phone' => 'nullable|string|max:11',
-            'company_logo' => 'nullable|string|max:255',
-            'tags' => 'array',
-            'tags.*' => 'string|max:255'
-        ]);
-
+        $file = '';
+        if ($request->hasFile('cv')) {
+            $file = $this->singlefileUpload($request->file('cv'), 'users', $request->name, 'resumes');
+        }
         $user->update([
             'name' => $request->name,
             'mobile' => $request->mobile
@@ -51,7 +39,7 @@ class UserController extends Controller
             $intern = Intern::where('user_id', $user->id)->first();
             $intern->update([
                 'title' => $request->title,
-                'cv' => $request->cv,
+                'cv' => $file,
                 'description' => $request->description
             ]);
         } elseif ($user->role === 'employer') {
