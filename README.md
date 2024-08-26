@@ -6,7 +6,7 @@
     <ul>
      <li>
      <h4>Register</h4>
-     <p>
+     <p border="5">
      <h5>Url: /api/register</h5>
      <h5>Method: POST</h5>
      <h5>params</h5>
