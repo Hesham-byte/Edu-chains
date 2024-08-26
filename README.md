@@ -5,18 +5,16 @@
    * Register
         - Url /api/register
         - Methode POST
-        - Params: {
-            "name": "string",
-            "email": "string",
-            "password": "string",
-            "password_confirmation": "string",
-            "role": "string" (intern, employer),
-            "mobile": "string",
-            "image": "File/image",
-        }
-        - Return: {
-            "token": "string", // To be used for authentication
-        }
+        - Params:
+            ** "name": "string",
+            ** "email": "string",
+            ** "password": "string",
+            ** "password_confirmation": "string",
+            ** "role": "string" (intern, employer),
+             ** "mobile": "string",
+            ** "image": "File/image",
+        - Return:
+            ** "token": "string", // To be used 
 <li>User</li>
 <li>Job</li>
 <li>Category</li>
