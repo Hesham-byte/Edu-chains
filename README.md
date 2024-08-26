@@ -4,9 +4,10 @@
 <li>
  <h3> Authentication </h3>
 
+<div border="5">
 -   <h4>Register</h4>
 
-    -   <ul>
+    <ul>
         <li>Url: /api/register</li>
         <li>Method: POST</li>
         <li>
@@ -28,7 +29,7 @@ Response:
 
 </li>
 </ul>
-
+</div>
 -   <h4>Login</h4>
     </li>
         <li>
