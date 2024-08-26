@@ -8,16 +8,16 @@ Authentication
     -   Url: <small>/api/register</small>
     -   Methode: <small>POST</small>
     -   params:
-    <ul>
-    <li>name: <small>string</small></li>
-    <li>email: <small>string</small></li>
-    <li>password: <small>string</small></li>
-    <li>password_confirmation: <small>string</small></li>
-    <li>role: <small>string</small></li>
-    <li>mobile: <small>string</small></li>
-    <li>image: <small>File/image</small></li>
+     <ul>
+      <li>name: <small>string</small></li>
+      <li>email: <small>string</small></li>
+      <li>password: <small>string</small></li>
+      <li>password_confirmation: <small>string</small></li>
+      <li>role: <small>string</small></li>
+      <li>mobile: <small>string</small></li>
+      <li>image: <small>File/image</small></li>
     </ul>
-    *   Response:
+    -   Response:
     <ul>
     <li>token: <small>string</small></li>
     </ul>
