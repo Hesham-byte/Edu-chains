@@ -3,21 +3,25 @@
 <h3> Requests </h3>
 <li>
 Authentication
-
 -   Register
-    -   Url <small>/api/register</small>
-    -   Methode <small>POST</small>
-    -   params
-    <ul>
-    <li>name</li>
-    <li>email</li>
-    <li>password</li>
-    <li>password_confirmation</li>
-    </ul>
-    -   Response
-    <ul>
-    <li>token</li>
-    </UL>
+<ul>
+<li>Url: /api/register</li>
+<li>Method: POST</li>
+<li>params:
+    -   name: String
+    -   email: String
+    -   password: String
+    -   password_confirmation: String
+    -   role: String (intern, employer)
+    -   mobile: String
+    -   image: File/Image
+</li>
+<li>Response:
+    -   token: String
+</li>
+</ul>
+-   Login
+</li>
     <li>User</li>
     <li>Job</li>
     <li>Category</li>
