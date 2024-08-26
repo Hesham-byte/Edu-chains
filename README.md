@@ -10,15 +10,15 @@
      <h5>Url: /api/register</h5>
      <h5>Method: POST</h5>
      <h5>params</h5>
-      name: String
-      email: String
-      password: String
-      password_confirmation: String
-      role: String (intern, employer)
-      mobile: String
-      image: File/Image
+      name: String</br>
+      email: String</br>
+      password: String</br>
+      password_confirmation: String</br>
+      role: String (intern, employer)</br>
+      mobile: String</br>
+      image: File/Image</br>
      <h5>Response</h5>
-      Token: String    
+      Token: String</br>
      </p>
      </li>
     </ul>
