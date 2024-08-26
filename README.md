@@ -5,7 +5,7 @@
  <h3> Authentication </h3>
 
 -   <h4>Register</h4>
-    <ul style="background-color: #f8f9fa; padding: 10px">
+    <ul background-color= "#f8f9fa" padding= "10px">
     <li>Url: /api/register</li>
     <li>Method: POST</li>
     <li>
