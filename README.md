@@ -7,9 +7,9 @@
      <li>
      <h4>Register</h4>
      <p>
-     #### Url: /api/register
-     #### Method: POST
-     #### params
+     <h5>Url: /api/register</h5>
+     <h5>Method: POST</h5>
+     <h5>params</h5>
       name: String
       email: String
       password: String
@@ -17,7 +17,7 @@
       role: String (intern, employer)
       mobile: String
       image: File/Image
-     #### Response
+     <h5>Response</h5>
       Token: String    
      </p>
      </li>
