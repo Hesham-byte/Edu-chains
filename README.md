@@ -5,11 +5,12 @@
  <h3> Authentication </h3>
 
 -   <h4>Register</h4>
-    <ul background-color= "#f8f9fa" padding= "10px">
-    <li>Url: /api/register</li>
-    <li>Method: POST</li>
-    <li>
-    params:
+
+    -   <ul>
+        <li>Url: /api/register</li>
+        <li>Method: POST</li>
+        <li>
+        params:
 
 -   name: String
 -   email: String
