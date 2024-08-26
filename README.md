@@ -3,12 +3,13 @@
 <h2> Requests </h2>
 <li>
  <h3> Authentication </h3>
+
 -   <h4>Register</h4>
-<ul>
-<li>Url: /api/register</li>
-<li>Method: POST</li>
-<li>
-params:
+    <ul>
+    <li>Url: /api/register</li>
+    <li>Method: POST</li>
+    <li>
+    params:
 
 -   name: String
 -   email: String
@@ -26,18 +27,19 @@ Response:
 
 </li>
 </ul>
+
 -   <h4>Login</h4>
-</li>
-    <li>
-    <h3> User </h3>
     </li>
-    <li>
-    <h3> Job </h3>
-    </li>
-    <li>
-    <h3> Category </h3>
-    </li>
-    <li>
-    <h3> Application </h3>   
-    </li>
-</ol>
+        <li>
+        <h3> User </h3>
+        </li>
+        <li>
+        <h3> Job </h3>
+        </li>
+        <li>
+        <h3> Category </h3>
+        </li>
+        <li>
+        <h3> Application </h3>   
+        </li>
+    </ol>
