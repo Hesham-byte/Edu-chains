@@ -1,7 +1,7 @@
 <h1 align="center"> EduChains </h1>
 <ol>
 <h3> Requests </h3>
-<li>Authentication </li>
+<li>Authentication
    * Register
      * Url /api/register
      * Methode POST
@@ -15,6 +15,7 @@
        * "image": "File/image",
      * Return:
        * "token": "string", // To be used 
+</li>
 <li>User</li>
 <li>Job</li>
 <li>Category</li>
