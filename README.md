@@ -1,23 +1,23 @@
 <h1 align="center"> EduChains </h1>
 <ol>
 <h3> Requests </h3>
-<li>Authentication </li>
-   * Register
-        - Url /api/register
-        - Methode POST
-        - Params: {
-            "name": "string",
-            "email": "string",
-            "password": "string",
-            "password_confirmation": "string",
-            "role": "string" (intern, employer),
-            "mobile": "string",
-            "image": "File/image",
-        }
-        - Return: {
-            "token": "string", // To be used for authentication
-        }
-<li>User</li>
+<li>
+Authentication
+* Register
+  - Url: <small>/api/register</small>
+  - Methode: <small>POST</small>
+  - params:
+    <ul>
+      <li>name: <small>string</small></li>
+      <li>email: <small>string</small></li>
+      <li>password: <small>string</small></li>
+      <li>password_confirmation: <small>string</small></li>
+      <li>role: <small>string</small></li>
+      <li>mobile: <small>string</small></li>
+      <li>image: <small>File/image</small></li>
+    </ul>
+</li>
+  <li>User</li>
 <li>Job</li>
 <li>Category</li>
 <li>Application</li>
