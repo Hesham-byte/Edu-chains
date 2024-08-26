@@ -1,7 +1,8 @@
 <h1 align="center"> EduChains </h1>
 <ol>
 <h3> Requests </h3>
-<li>Authentication
+<li>
+    Authentication
     * Register
       * Url: /api/register
       * Methode: POST
