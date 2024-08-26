@@ -7,17 +7,23 @@ Authentication
 <ul>
 <li>Url: /api/register</li>
 <li>Method: POST</li>
-<li>params:
-    -   name: String
-    -   email: String
-    -   password: String
-    -   password_confirmation: String
-    -   role: String (intern, employer)
-    -   mobile: String
-    -   image: File/Image
+<li>
+params:
+
+-   name: String
+-   email: String
+-   password: String
+-   password_confirmation: String
+-   role: String (intern, employer)
+-   mobile: String
+-   image: File/Image
+
 </li>
-<li>Response:
-    -   token: String
+<li>
+Response:
+
+-   token: String
+
 </li>
 </ul>
 -   Login
