@@ -3,8 +3,8 @@
 <h3> Requests </h3>
 <li>Authentication
     * Register
-      * Url /api/register
-      * Methode POST
+      * Url: /api/register
+      * Methode: POST
       * Params:
         * "name": "string",
         * "email": "string",
