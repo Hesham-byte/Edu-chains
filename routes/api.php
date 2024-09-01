@@ -14,7 +14,13 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/tags', [TagController::class, 'index']);
 Route::post('/tags', [TagController::class, 'store']);
-Route::apiResource('categories', CategoryController::class)->middleware(['auth:sanctum', 'adminMiddleware:supervisor,admin'])->only(['store', 'update', 'destroy']);
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/categories', 'index');
+    Route::get('/categories/{id}', 'show');
+    Route::post('/categories', 'store')->middleware(['auth:sanctum', 'adminMiddleware:supervisor,admin']);
+    Route::put('/categories/{id}', 'update')->middleware(['auth:sanctum', 'adminMiddleware:supervisor,admin']);
+    Route::delete('/categories/{id}', 'destroy')->middleware(['auth:sanctum', 'adminMiddleware:supervisor,admin']);
+});
 
 Route::get('/jobs/category/{id}', [JobController::class, 'getByCategory']);
 Route::get('/jobs', [JobController::class, 'index']);

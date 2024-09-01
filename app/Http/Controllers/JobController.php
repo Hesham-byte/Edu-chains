@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Api\V1\JobUpdateRequest;
+use App\Http\Resources\V1\JobResource;
+use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 use App\models\job;
 
 class JobController extends Controller
 {
+    use ApiResponseTrait;
     public function index(Request $request)
     {
         if ($request->has('employer_id')) {
@@ -30,14 +34,16 @@ class JobController extends Controller
         ]);
 
         $job = Job::create($request->all());
-        return response()->json($job, 201);
+        $job = new JobResource($job);
+        return $this->apiSuccess(compact('job'));
     }
 
-    public function update(Request $request, $id)
+    public function update(JobUpdateRequest $request, $id)
     {
         $job = Job::findOrFail($id);
         $job->update($request->all());
-        return response()->json($job, 200);
+        $job = new JobResource($job);
+        return $this->apiSuccess(data: compact('job'), message: 'Job updated successfully');
     }
 
     public function destroy($id)

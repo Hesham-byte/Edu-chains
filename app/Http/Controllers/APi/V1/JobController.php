@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\JobCreateRequest;
+use App\Http\Requests\Api\V1\JobUpdateRequest;
 use App\Http\Resources\V1\CategoryResource;
 use App\Http\Resources\V1\JobResource;
 use App\Http\Traits\ApiResponseTrait;
@@ -46,24 +47,26 @@ class JobController extends Controller
         return $this->apiSuccess(compact('job'));
     }
 
-    public function update(Request $request, $id)
+    public function update(JobUpdateRequest $request, $id)
     {
         $job = Job::findOrFail($id);
         $job->update($request->all());
-        return response()->json($job, 200);
+        $job = new JobResource($job);
+        return $this->apiSuccess(compact('job'));
     }
 
     public function destroy($id)
     {
         $job = Job::findOrFail($id);
         $job->delete();
-        return response()->json(null, 204);
+        return $this->apiSuccess(message: 'Job deleted successfully');
     }
 
     public function show($id)
     {
         $job = Job::findOrFail($id);
-        return response()->json($job, 200);
+        $job = new JobResource($job);
+        return $this->apiSuccess(compact('job'));
     }
     public function getByCategory($categoryId)
     {
