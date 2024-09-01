@@ -50,7 +50,8 @@ class ApplicationController extends Controller
             'status' => 'pending',
             'resume' => $file,
         ];
-        $application = new ApplicationResource(Application::create($data));
+        $application = Application::create($data);
+        $application = new ApplicationResource($application);
         return $this->apiSuccess(compact('application'), 'Application created successfully');
     }
 

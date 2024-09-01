@@ -26,4 +26,13 @@ class Application extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    public function getCvAttribute()
+    {
+
+        $cv = $this->resume != '' ? $this->resume : $this->user->intern->cv;
+
+        return asset($cv);
+    }
 }
