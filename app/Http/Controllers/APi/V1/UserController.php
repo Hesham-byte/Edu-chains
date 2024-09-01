@@ -69,4 +69,16 @@ class UserController extends Controller
 
         return $this->apiSuccess(message: 'Profile updated successfully');
     }
+
+    public function changeType(Request $request, $id)
+    {
+        $request->validate([
+            'type' => 'required|string|in:user,admin,supervisor',
+        ]);
+        $user = User::find($id);
+        $user->update([
+            'type' => $request->type
+        ]);
+        return $this->apiSuccess(message: 'Profile updated successfully');
+    }
 }

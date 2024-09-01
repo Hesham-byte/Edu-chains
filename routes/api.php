@@ -23,6 +23,7 @@ Route::get('/jobs/{id}', [JobController::class, 'show']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [UserController::class, 'show']);
+    Route::put('/users/{id}/changeType', [UserController::class, 'changeType'])->middleware(['auth:sanctum', 'adminMiddleware:supervisor']);
 
     Route::put('/user/edit', [UserController::class, 'update']);
     Route::post('/jobs', [JobController::class, 'store']);
