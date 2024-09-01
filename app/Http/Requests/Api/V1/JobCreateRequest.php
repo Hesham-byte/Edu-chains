@@ -21,6 +21,12 @@ class JobCreateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $currencies = [
+            'USD',
+            'EUR',
+            'EGP',
+            'SAR',
+        ];
         return [
             'employer_id' => 'required|exists:employers,id',
             'title' => 'required|string|max:255',
@@ -28,6 +34,7 @@ class JobCreateRequest extends FormRequest
             'location' => 'required|string|max:255',
             'skills' => 'required|string|max:255',
             'salary' => 'nullable|numeric',
+            'currency' => 'nullable|string|in:' . implode(',', $currencies),
             'work_arrangement' => 'required|string|in:remote,onsite,hybrid',
             'job_type' => 'required|string|in:full-time,part-time',
             'category_id' => 'required|exists:categories,id',

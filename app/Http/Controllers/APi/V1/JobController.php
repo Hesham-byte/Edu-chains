@@ -29,7 +29,20 @@ class JobController extends Controller
     public function store(JobCreateRequest $request)
     {
 
-        $job = new JobResource(Job::create($request->all()));
+        // $job = new JobResource(Job::create($request->all()));
+        $job = Job::create([
+            'employer_id' => $request->employer_id,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'location' => $request->location,
+            'skills' => $request->skills,
+            'salary' => $request->salary,
+            'currency' => $request->currency ?? 'EGP',
+            'work_arrangement' => $request->work_arrangement,
+            'job_type' => $request->job_type,
+        ]);
+        $job = new JobResource($job);
         return $this->apiSuccess(compact('job'));
     }
 

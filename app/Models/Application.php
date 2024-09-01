@@ -21,4 +21,9 @@ class Application extends Model
         'plan',
         'resume',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

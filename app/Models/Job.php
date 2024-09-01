@@ -16,6 +16,7 @@ class Job extends Model
         'location',
         'skills',
         'salary',
+        'currency',
         'work_arrangement',
         'job_type',
         'category_id',

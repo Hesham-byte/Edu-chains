@@ -21,6 +21,7 @@ class JobResource extends JsonResource
             'location' => $this->location,
             'skills' => $this->skills,
             'salary' => $this->salary,
+            'currency' => $this->currency,
             'work_arrangement' => $this->work_arrangement,
             'job_type' => $this->job_type,
         ];

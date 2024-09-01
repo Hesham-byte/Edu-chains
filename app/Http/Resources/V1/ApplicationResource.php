@@ -23,7 +23,7 @@ class ApplicationResource extends JsonResource
             'linkedin' => $this->linkedin,
             'plan' => $this->plan,
             'status' => $this->status,
-            'resume' => $this->resume ? asset($this->resume) : null,
+            'resume' => $this->resume ? asset($this->resume) : asset($this->user->cv),
             'user_id' => $this->user_id,
             'job_id' => $this->employer_job_id,
         ];

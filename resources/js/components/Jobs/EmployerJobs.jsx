@@ -184,7 +184,7 @@ const EmployerJobs = ({ employerId }) => {
                             <p>{job.description}</p>
                             <p>Location: {job.location}</p>
                             <p>Skills: {job.skills}</p>
-                            <p>Salary: ${job.salary}</p>
+                            <p>Salary: ${job.salary} {job.currency}</p>
                             <p>Work Arrangement: {job.work_arrangement}</p>
                             <p>Job Type: {job.job_type}</p>
                             <p>Category: {categories.find(cat => cat.id === job.category_id)?.name}</p>
