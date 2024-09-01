@@ -7,10 +7,13 @@ use App\Http\Resources\V1\CategoryResource;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     use ApiResponseTrait;
+
+    public function __construct() {}
     public function index()
     {
         $categories = CategoryResource::collection(Category::all());
@@ -20,7 +23,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:categories,name',
         ]);
 
         $category = new CategoryResource(Category::create($request->all()));

@@ -25,7 +25,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
-            'mobile' => $request->mobile
+            'mobile' => $request->mobile,
+            'type' => 'user'
         ]);
 
         if ($request->hasFile('image')) {

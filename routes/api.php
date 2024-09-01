@@ -14,7 +14,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/tags', [TagController::class, 'index']);
 Route::post('/tags', [TagController::class, 'store']);
-Route::apiResource('categories', CategoryController::class);
+Route::apiResource('categories', CategoryController::class)->middleware(['auth:sanctum', 'adminMiddleware:supervisor,admin'])->only(['store', 'update', 'destroy']);
 
 Route::get('/jobs/category/{id}', [JobController::class, 'getByCategory']);
 Route::get('/jobs', [JobController::class, 'index']);
