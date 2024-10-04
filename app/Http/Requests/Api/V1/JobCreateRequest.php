@@ -33,7 +33,7 @@ class JobCreateRequest extends FormRequest
             'description' => 'required|string',
             'location' => 'required|string|max:255',
             'skills' => 'required|string|max:255',
-            'salary' => 'nullable|numeric',
+            'salary' => 'nullable|numeric|max:99999.99|min:.01',
             'currency' => 'nullable|string|in:' . implode(',', $currencies),
             'work_arrangement' => 'required|string|in:remote,onsite,hybrid',
             'job_type' => 'required|string|in:full-time,part-time',
